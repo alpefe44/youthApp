@@ -9,7 +9,7 @@ type Props = {
 
 export const SkipText = ({ onPress }: Props) => {
     return (
-        <Pressable onPress={onPress} style={{ alignSelf: 'center', marginVertical: 15 }}>
+        <Pressable onPress={onPress} style={{ alignSelf: 'center', marginVertical: 24 }}>
             <Text style={{ color: '#8B51FF', fontSize: 16 }}>Atla</Text>
         </Pressable>
     );

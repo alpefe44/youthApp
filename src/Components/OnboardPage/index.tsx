@@ -20,7 +20,7 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
     const { navigate } = useNavigation<NativeStackNavigationProp<StackParams>>()
 
     return (
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center' , backgroundColor : '#F5F5F5'}}>
             <ImageBackground source={require('../../../assets/morarka.png')} style={styles.topBg}>
                 <Image style={styles.phoneImage} source={imageUrl}></Image>
             </ImageBackground>
@@ -30,7 +30,7 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
                 <Text style={{ color: '#A4A4A4', fontWeight: '600', fontSize: isSkip ? 24 : 32, lineHeight: 36, textAlign: 'center', marginTop: isSkip ? 0 : 20 }}>{desc}</Text>
             </View>
 
-            <View style={{ marginTop: 55, height: 216 }}>
+            <View style={{ marginTop : 40}}>
                 <OnboardNextButton onPress={() => {
                     if (isSkip) {
                         navigate('OnBoard2');
