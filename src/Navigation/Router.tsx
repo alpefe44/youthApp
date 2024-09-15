@@ -2,6 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OnboardingPage from '../Components/OnboardPage';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../Screens/HomeScreen';
+import LoginScreen from '../Screens/LoginScreen';
+import SignInScreen from '../Screens/SignInScreen';
+import RegisterScreen from '../Screens/RegisterScreen';
 
 
 export type StackParams = {
@@ -10,8 +13,15 @@ export type StackParams = {
   Home: undefined
 }
 
+export type LoginStackParams = {
+  Login: undefined,
+  Register: undefined,
+  SignIn: undefined
+}
+
 
 const Stack = createNativeStackNavigator<StackParams>();
+const StackLogin = createNativeStackNavigator<any>();
 
 function OnBoardStack() {
   return (
@@ -36,9 +46,20 @@ function OnBoardStack() {
           />
         )}
       </Stack.Screen>
-      <Stack.Screen name='Home' component={HomeScreen}></Stack.Screen>
+      <Stack.Screen name='Home' component={LoginStack}></Stack.Screen>
     </Stack.Navigator>
   );
+}
+
+
+function LoginStack() {
+  return (
+    <StackLogin.Navigator>
+      <StackLogin.Screen options={{ headerShown: true, headerTitle: 'Giriş Yap', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontWeight: 'medium', fontSize: 24 } }} name='Login' component={SignInScreen}></StackLogin.Screen>
+      <StackLogin.Screen name='SignIn' component={SignInScreen}></StackLogin.Screen>
+      <StackLogin.Screen name='Register' component={RegisterScreen}></StackLogin.Screen>
+    </StackLogin.Navigator>
+  )
 }
 
 
