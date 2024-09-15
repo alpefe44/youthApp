@@ -5,6 +5,8 @@ import { styles } from './Style';
 import OnboardNextButton from './OnboardNextButton';
 import { SkipText } from './SkipText';
 import { useNavigation } from '@react-navigation/native';
+import { StackParams } from '../../Navigation/Router';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
     imageUrl: any,
@@ -15,7 +17,7 @@ type Props = {
 
 const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
 
-    const { navigate } = useNavigation()
+    const { navigate } = useNavigation<NativeStackNavigationProp<StackParams>>()
 
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
@@ -25,19 +27,19 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
 
             <View style={styles.secondMainView}>
                 <Text style={{ color: '#8B51FF', fontWeight: '600', fontSize: 32, lineHeight: 48, marginTop: 38 }}>{title}</Text>
-                <Text style={{ color: '#A4A4A4', fontWeight: '600', fontSize: isSkip ? 24 : 32, lineHeight: 36, textAlign: 'center' , marginTop : isSkip ? 0 : 20 }}>{desc}</Text>
+                <Text style={{ color: '#A4A4A4', fontWeight: '600', fontSize: isSkip ? 24 : 32, lineHeight: 36, textAlign: 'center', marginTop: isSkip ? 0 : 20 }}>{desc}</Text>
             </View>
 
-            <View style={{ marginTop: 55 , height : 216}}>
+            <View style={{ marginTop: 55, height: 216 }}>
                 <OnboardNextButton onPress={() => {
                     if (isSkip) {
                         navigate('OnBoard2');
                     } else {
-                        console.log("asjfnjskf")
+                        navigate('Home');
                     }
                 }}></OnboardNextButton>
                 {
-                    isSkip && <SkipText></SkipText>
+                    isSkip && <SkipText onPress={() => navigate('Home')}></SkipText>
                 }
             </View>
         </View >

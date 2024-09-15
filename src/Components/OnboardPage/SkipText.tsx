@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
 
-export const SkipText = () => {
+type Props = {
+    onPress: any
+}
+
+export const SkipText = ({ onPress }: Props) => {
     return (
-        <Pressable style={{ alignSelf: 'center' , marginVertical : 15 }}>
+        <Pressable onPress={onPress} style={{ alignSelf: 'center', marginVertical: 15 }}>
             <Text style={{ color: '#8B51FF', fontSize: 16 }}>Atla</Text>
         </Pressable>
     );

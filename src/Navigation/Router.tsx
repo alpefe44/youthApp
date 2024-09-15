@@ -1,13 +1,21 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OnboardingPage from '../Components/OnboardPage';
 import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from '../Screens/HomeScreen';
 
 
-const Stack = createNativeStackNavigator();
+export type StackParams = {
+  OnBoard1: undefined,
+  OnBoard2: undefined,
+  Home: undefined
+}
+
+
+const Stack = createNativeStackNavigator<StackParams>();
 
 function OnBoardStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='OnBoard1' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="OnBoard1">
         {() => (
           <OnboardingPage
@@ -28,6 +36,7 @@ function OnBoardStack() {
           />
         )}
       </Stack.Screen>
+      <Stack.Screen name='Home' component={HomeScreen}></Stack.Screen>
     </Stack.Navigator>
   );
 }
