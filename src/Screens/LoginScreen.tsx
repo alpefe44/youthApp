@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import LoginButton from '../Components/LoginButton';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../assets/logo.png')}></Image>
             <View style={{ marginTop: 100 }}>
-                <LoginButton isRegister={false} title='Giriş Yap' onPress={() => console.log("ss")}></LoginButton>
-                <LoginButton isRegister title='Kayıt Ol' onPress={() => console.log("ss")}></LoginButton>
+                <LoginButton disabled={false} isRegister={false} title='Giriş Yap' onPress={() => console.log("ss")}></LoginButton>
+                <LoginButton disabled={false} isRegister title='Kayıt Ol' onPress={() => console.log("ss")}></LoginButton>
             </View>
         </View>
     );
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor : '#FFFFFF'
+        backgroundColor: '#FFFFFF'
     },
 
     image: {

@@ -3,13 +3,14 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 type Props = {
     title: string,
-    onPress: any,
+    onPress?: any,
     isRegister: boolean
+    disabled: boolean
 }
 
-const LoginButton = ({ title, onPress, isRegister }: Props) => {
+const LoginButton = ({ title, onPress, isRegister, disabled }: Props) => {
     return (
-        <TouchableOpacity style={[styles.button, { backgroundColor: isRegister ? '#FFFFFF' : '#8B51FF', borderColor: '#8B51FF' }]} onPress={onPress}>
+        <TouchableOpacity disabled={disabled} style={[styles.button, { backgroundColor: isRegister ? '#FFFFFF' : '#8B51FF', borderColor: '#8B51FF' }]} onPress={onPress}>
             <Text style={[styles.buttonText, { color: isRegister ? '#8B51FF' : '#FFFFFF' }]}>{title}</Text>
         </TouchableOpacity>
     );
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 25,
-        borderWidth : 1
+        borderWidth: 1
     },
     buttonText: {
         color: '#FFFFFF',
