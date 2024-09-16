@@ -7,8 +7,8 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../assets/logo.png')}></Image>
             <View style={{ marginTop: 100 }}>
-                <LoginButton disabled={false} isRegister={false} title='Giriş Yap' onPress={() => console.log("ss")}></LoginButton>
-                <LoginButton disabled={false} isRegister title='Kayıt Ol' onPress={() => console.log("ss")}></LoginButton>
+                <LoginButton disabled={false} isRegister={false} title='Giriş Yap' onPress={() => navigation.navigate('SignIn')}></LoginButton>
+                <LoginButton disabled={false} isRegister title='Kayıt Ol' onPress={() => navigation.navigate('Register')}></LoginButton>
             </View>
         </View>
     );

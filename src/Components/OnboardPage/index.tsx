@@ -20,7 +20,7 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
     const { navigate } = useNavigation<NativeStackNavigationProp<StackParams>>()
 
     return (
-        <View style={{ flex: 1, alignItems: 'center' , backgroundColor : '#F5F5F5'}}>
+        <View style={{ flex: 1, alignItems: 'center' , backgroundColor : '#FFFFFF'}}>
             <ImageBackground source={require('../../../assets/morarka.png')} style={styles.topBg}>
                 <Image style={styles.phoneImage} source={imageUrl}></Image>
             </ImageBackground>

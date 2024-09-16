@@ -47,7 +47,7 @@ const RegisterScreen = () => {
             </View>
 
             <View style={{ marginTop: 25 }}>
-                <LoginButton disabled={password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
+                <LoginButton onPress={() => console.log("ss")} disabled={password.length > 0 && confirmPassword.length > 0 && password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
             </View>
         </View>
     );

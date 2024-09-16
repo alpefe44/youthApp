@@ -6,6 +6,11 @@ export const styles = StyleSheet.create({
         width: 428,
         height: 503,
         backgroundColor: '#8B51FF2E',
+        shadowColor: '#000', // Gölgenin rengi
+        shadowOffset: { width: 0, height: 2 }, // Gölgenin x ve y yönünde kayması
+        shadowOpacity: 0.8, // Gölgenin opaklığı
+        shadowRadius: 3, // Gölgenin yayılması
+        elevation : 5
     },
     phoneImage: {
         top: 113,
