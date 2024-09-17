@@ -34,7 +34,6 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            {/* Şifre Onayla Kısmı */}
             <View style={{ marginVertical: 15 }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Confirm Password</Text>
                 <TextInput
@@ -46,7 +45,7 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            <View style={{ marginTop: 25 }}>
+            <View style={{ marginTop: 25 , width : '80%' }}>
                 <LoginButton onPress={() => console.log("ss")} disabled={password.length > 0 && confirmPassword.length > 0 && password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
             </View>
         </View>

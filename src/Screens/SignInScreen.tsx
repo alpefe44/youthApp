@@ -14,12 +14,12 @@ const SignInScreen = () => {
         <View style={styles.container}>
             <View style={{ marginVertical: 15 }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Email</Text>
-                <TextInput placeholder='Mail adresini giriniz' style={styles.textInputStyle} value={email}></TextInput>
+                <TextInput onChangeText={(text) => setEmail(text)} placeholder='Mail adresini giriniz' style={styles.textInputStyle} value={email}></TextInput>
             </View>
 
             <View style={{ marginVertical: 15 }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Password</Text>
-                <TextInput placeholder='Şifrenizi giriniz' style={styles.textInputStyle} value={password}></TextInput>
+                <TextInput onChangeText={(text) => setPassword(text)} placeholder='Şifrenizi giriniz' style={styles.textInputStyle} value={password}></TextInput>
             </View>
 
 
@@ -28,7 +28,7 @@ const SignInScreen = () => {
                 <Text style={{ color: '#838383', fontWeight: 'regular', fontSize: 12 }}>Şifremi Unuttum</Text>
             </View>
 
-            <View style={{ marginTop: 25 }}>
+            <View style={{ marginTop: 25, width: '80%' }}>
                 <LoginButton disabled={false} isRegister={false} title='Giriş Yap'></LoginButton>
             </View>
         </View>
