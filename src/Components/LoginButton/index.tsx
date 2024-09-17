@@ -19,7 +19,7 @@ const LoginButton = ({ title, onPress, isRegister, disabled }: Props) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#8B51FF',
-        width: 388,
+        width: '100%',
         height: 48,
         borderRadius: 12,
         alignItems: 'center',

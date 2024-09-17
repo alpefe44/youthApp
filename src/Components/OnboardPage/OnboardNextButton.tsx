@@ -8,7 +8,7 @@ type Props = {
 
 const OnboardNextButton = ({ onPress }: Props) => {
     return (
-        <Pressable onPress={onPress} style={{ width: 388, height: 48, backgroundColor: '#8B51FF', alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}>
+        <Pressable onPress={onPress} style={{ width: '100%', height: 48, backgroundColor: '#8B51FF', alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}>
             <Text style={{ color: '#FFFFFF', fontSize: 16 }}>Devam Et</Text>
         </Pressable>
     );

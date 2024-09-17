@@ -54,11 +54,11 @@ function OnBoardStack() {
 
 function LoginStack() {
   return (
-    <StackLogin.Navigator>
+    <StackLogin.Navigator >
       <StackLogin.Screen options={{ headerShown: false }} name='Login' component={LoginScreen}></StackLogin.Screen>
       <StackLogin.Screen options={{ headerShown: true, headerTitle: 'Giriş Yap', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontWeight: 'medium', fontSize: 24 } }} name='SignIn' component={SignInScreen}></StackLogin.Screen>
-      <StackLogin.Screen name='Register' component={RegisterScreen}></StackLogin.Screen>
-    </StackLogin.Navigator>
+      <StackLogin.Screen options={{ headerShown: true, headerTitle: 'Kayıt Ol', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontWeight: 'medium', fontSize: 24 } }} name='Register' component={RegisterScreen}></StackLogin.Screen>
+    </StackLogin.Navigator >
   )
 }
 

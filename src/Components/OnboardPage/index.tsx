@@ -30,7 +30,7 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
                 <Text style={{ color: '#A4A4A4', fontWeight: '600', fontSize: isSkip ? 24 : 32, lineHeight: 36, textAlign: 'center', marginTop: isSkip ? 0 : 40 }}>{desc}</Text>
             </View>
 
-            <View style={{ marginTop : 40}}>
+            <View style={{ marginTop : 40 , width : '80%' , alignItems : 'center' , marginHorizontal : 15}}>
                 <OnboardNextButton onPress={() => {
                     if (isSkip) {
                         navigate('OnBoard2');
