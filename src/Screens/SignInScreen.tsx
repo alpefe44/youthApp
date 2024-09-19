@@ -62,7 +62,7 @@ const SignInScreen = () => {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '90%' }}>
                 <RememberMeCheckbox isChecked={isChecked} setIsChecked={setIsChecked}></RememberMeCheckbox>
-                <Text style={{ color: '#838383', fontWeight: 'regular', fontSize: 12 }}>Şifremi Unuttum</Text>
+                <Text style={{ fontFamily: 'Poppins-Regular', color: '#838383', fontWeight: 'regular', fontSize: 12 }}>Şifremi Unuttum</Text>
             </View>
 
             <View style={{ marginTop: 40, width: '90%' }}>

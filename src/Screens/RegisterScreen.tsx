@@ -30,7 +30,7 @@ const RegisterScreen = () => {
     return (
         <View style={styles.container}>
             <View style={{ width: '90%' }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '500', paddingVertical: 8 }}>Email</Text>
+                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '500', paddingVertical: 8, fontFamily: 'Poppins-Regular' }}>Email</Text>
                 <TextInput
                     placeholder='Mail adresini giriniz'
                     style={styles.textInputStyle}
@@ -40,7 +40,7 @@ const RegisterScreen = () => {
             </View>
 
             <View style={{ marginTop: 16, width: '90%' }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8 }}>Password</Text>
+                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8, fontFamily: 'Poppins-Regular' }}>Password</Text>
                 <TextInput
                     placeholder='Şifrenizi giriniz'
                     style={styles.textInputStyle}
@@ -51,7 +51,7 @@ const RegisterScreen = () => {
             </View>
 
             <View style={{ marginTop: 16, width: '90%' }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8 }}>Confirm Password</Text>
+                <Text style={{ fontFamily: 'Poppins-Regular', color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8 }}>Confirm Password</Text>
                 <TextInput
                     placeholder='Şifrenizi onaylayın'
                     style={styles.textInputStyle}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingHorizontal: 16,
         paddingVertical: 13,
-        
+
     }
 });
 
