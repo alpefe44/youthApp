@@ -1,14 +1,51 @@
-//import liraries
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import RememberMeCheckbox from '../Components/RememberBox';
 import LoginButton from '../Components/LoginButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginRequest } from '../api';
 
-// create a component
 const SignInScreen = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const [isChecked, setIsChecked] = useState(false)
+
+    const handleLogin = async () => {
+
+        const data = await LoginRequest({ email : email, password : password })
+
+        if (data) {
+            try {
+                if (isChecked) {
+                    await AsyncStorage.setItem("userEmail", email);
+                } else {
+                    console.log("Giriş Başarılı signinscreen")
+                }
+            } catch (error) {
+                console.error("Failed to save email", error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const getLocal = async () => {
+            try {
+                const em = await AsyncStorage.getItem("userEmail")
+
+                if (em) {
+                    setEmail(em)
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getLocal();
+
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -24,18 +61,17 @@ const SignInScreen = () => {
 
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingHorizontal: 20 }}>
-                <RememberMeCheckbox></RememberMeCheckbox>
+                <RememberMeCheckbox isChecked={isChecked} setIsChecked={setIsChecked}></RememberMeCheckbox>
                 <Text style={{ color: '#838383', fontWeight: 'regular', fontSize: 12 }}>Şifremi Unuttum</Text>
             </View>
 
             <View style={{ marginTop: 25, width: '80%' }}>
-                <LoginButton disabled={false} isRegister={false} title='Giriş Yap'></LoginButton>
+                <LoginButton onPress={handleLogin} disabled={false} isRegister={false} title='Giriş Yap'></LoginButton>
             </View>
         </View>
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -54,5 +90,4 @@ const styles = StyleSheet.create({
     }
 });
 
-//make this component available to the app
 export default SignInScreen;

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-export default function RememberMeCheckbox() {
-    const [isChecked, setIsChecked] = useState(false);
+type Props = {
+    isChecked: boolean,
+    setIsChecked: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function RememberMeCheckbox({ isChecked, setIsChecked }: Props) {
 
     const handleCheck = () => {
-        setIsChecked(!isChecked); // Tıklandığında checkbox durumunu değiştir
+        setIsChecked(!isChecked);
     };
 
     return (

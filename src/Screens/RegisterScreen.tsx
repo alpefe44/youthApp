@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import RememberMeCheckbox from '../Components/RememberBox';
 import LoginButton from '../Components/LoginButton';
+import { RegisterRequest } from '../api';
 
 // create a component
 const RegisterScreen = () => {
@@ -10,6 +11,20 @@ const RegisterScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+
+    const handleRegister = async () => {
+
+        const data = await RegisterRequest({ email: email, password: password })
+
+        if (data) {
+            console.log("Kayıt Başarılı")
+
+        } else {
+            console.error("kayıt başarısız");
+        }
+    }
+
 
     return (
         <View style={styles.container}>
@@ -45,8 +60,8 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            <View style={{ marginTop: 25 , width : '80%' }}>
-                <LoginButton onPress={() => console.log("ss")} disabled={password.length > 0 && confirmPassword.length > 0 && password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
+            <View style={{ marginTop: 25, width: '80%' }}>
+                <LoginButton onPress={handleRegister} disabled={password.length > 0 && confirmPassword.length > 0 && password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
             </View>
         </View>
     );
