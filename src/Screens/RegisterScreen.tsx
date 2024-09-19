@@ -1,11 +1,12 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions } from 'react-native';
 import RememberMeCheckbox from '../Components/RememberBox';
 import LoginButton from '../Components/LoginButton';
 import { RegisterRequest } from '../api';
 
-// create a component
+const { width } = Dimensions.get('screen');
+
 const RegisterScreen = () => {
 
     const [email, setEmail] = useState("");
@@ -28,8 +29,8 @@ const RegisterScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ marginVertical: 15 }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Email</Text>
+            <View style={{ width: '90%' }}>
+                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '500', paddingVertical: 8 }}>Email</Text>
                 <TextInput
                     placeholder='Mail adresini giriniz'
                     style={styles.textInputStyle}
@@ -38,8 +39,8 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            <View style={{ marginVertical: 15 }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Password</Text>
+            <View style={{ marginTop: 16, width: '90%' }}>
+                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8 }}>Password</Text>
                 <TextInput
                     placeholder='Şifrenizi giriniz'
                     style={styles.textInputStyle}
@@ -49,8 +50,8 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            <View style={{ marginVertical: 15 }}>
-                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Confirm Password</Text>
+            <View style={{ marginTop: 16, width: '90%' }}>
+                <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: '400', paddingVertical: 8 }}>Confirm Password</Text>
                 <TextInput
                     placeholder='Şifrenizi onaylayın'
                     style={styles.textInputStyle}
@@ -60,7 +61,7 @@ const RegisterScreen = () => {
                 />
             </View>
 
-            <View style={{ marginTop: 25, width: '80%' }}>
+            <View style={{ marginTop: 40, width: '90%' }}>
                 <LoginButton onPress={handleRegister} disabled={password.length > 0 && confirmPassword.length > 0 && password === confirmPassword ? false : true} isRegister={false} title='Kayıt Ol' />
             </View>
         </View>
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textInputStyle: {
-        width: 388,
         height: 48,
         borderWidth: 1,
         backgroundColor: '#FFFFF',
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingHorizontal: 16,
         paddingVertical: 13,
+        
     }
 });
 

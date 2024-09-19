@@ -14,7 +14,7 @@ const SignInScreen = () => {
 
     const handleLogin = async () => {
 
-        const data = await LoginRequest({ email : email, password : password })
+        const data = await LoginRequest({ email: email, password: password })
 
         if (data) {
             try {
@@ -49,23 +49,23 @@ const SignInScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ marginVertical: 15 }}>
+            <View style={{ marginVertical: 16, width: '90%' }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Email</Text>
                 <TextInput onChangeText={(text) => setEmail(text)} placeholder='Mail adresini giriniz' style={styles.textInputStyle} value={email}></TextInput>
             </View>
 
-            <View style={{ marginVertical: 15 }}>
+            <View style={{ width: '90%' }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10 }}>Password</Text>
                 <TextInput onChangeText={(text) => setPassword(text)} placeholder='Şifrenizi giriniz' style={styles.textInputStyle} value={password}></TextInput>
             </View>
 
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingHorizontal: 20 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '90%' }}>
                 <RememberMeCheckbox isChecked={isChecked} setIsChecked={setIsChecked}></RememberMeCheckbox>
                 <Text style={{ color: '#838383', fontWeight: 'regular', fontSize: 12 }}>Şifremi Unuttum</Text>
             </View>
 
-            <View style={{ marginTop: 25, width: '80%' }}>
+            <View style={{ marginTop: 40, width: '90%' }}>
                 <LoginButton onPress={handleLogin} disabled={false} isRegister={false} title='Giriş Yap'></LoginButton>
             </View>
         </View>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textInputStyle: {
-        width: 388,
+        width: '100%',
         height: 48,
         borderWidth: 1,
         backgroundColor: '#FFFFF',
