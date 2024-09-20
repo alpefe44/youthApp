@@ -17,7 +17,7 @@ export default function RememberMeCheckbox({ isChecked, setIsChecked }: Props) {
             <TouchableOpacity style={styles.checkboxContainer} onPress={handleCheck}>
                 {isChecked && (
                     <Image
-                        source={require('../../../assets/Checkbox.png')} 
+                        source={require('../../../assets/Checkbox.png')}
                         style={styles.checkboxImage}
                     />
                 )}
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
         marginLeft: 8,
         fontSize: 12,
         color: '#1B1B1B',
-        fontWeight: 'regular'
+        fontFamily: 'Poppins-Regular'
     },
 });

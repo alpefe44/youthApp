@@ -21,5 +21,6 @@ export const styles = StyleSheet.create({
     secondMainView: {
         justifyContent: 'center',
         alignItems: 'center',
+        width : '90%'
     }
 })
