@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         marginLeft: 8,
         fontSize: 12,
         color: '#1B1B1B',
-        fontFamily: 'Poppins-Regular'
+        fontFamily: 'Poppins-Regular',
+        fontWeight : 'regular'
     },
 });

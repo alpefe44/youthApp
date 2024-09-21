@@ -23,8 +23,10 @@ const SignInScreen = ({ navigation }) => {
             try {
                 if (isChecked) {
                     await AsyncStorage.setItem("userEmail", email);
+                    navigation.navigate('Tab')
                 } else {
                     console.log("Giriş Başarılı signinscreen")
+                    navigation.navigate('Tab')
                 }
             } catch (error) {
                 console.error("Failed to save email", error);
@@ -59,7 +61,7 @@ const SignInScreen = ({ navigation }) => {
 
             <View style={{ marginVertical: 16, width: '90%' }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10, fontFamily: 'Poppins-Regular' }}>Şifre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center'  }}>
                     <TextInput
                         onChangeText={(text) => setPassword(text)}
                         placeholder='Şifrenizi giriniz'
