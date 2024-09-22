@@ -19,17 +19,7 @@ export default function App() {
   if (!isLoaded) {
     return <ActivityIndicator></ActivityIndicator>
   }
-
-  return <Router></Router>
-
-
+  return (
+    <Router></Router >
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

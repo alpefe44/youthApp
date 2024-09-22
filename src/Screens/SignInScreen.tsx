@@ -23,10 +23,10 @@ const SignInScreen = ({ navigation }) => {
             try {
                 if (isChecked) {
                     await AsyncStorage.setItem("userEmail", email);
-                    navigation.navigate('Tab')
+                    navigation.navigate('Choice')
                 } else {
                     console.log("Giriş Başarılı signinscreen")
-                    navigation.navigate('Tab')
+                    navigation.navigate('Choice')
                 }
             } catch (error) {
                 console.error("Failed to save email", error);
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textInputStyle: {
         width: '100%',

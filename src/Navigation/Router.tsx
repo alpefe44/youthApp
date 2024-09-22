@@ -15,7 +15,7 @@ export type StackParams = {
   OnBoard1: undefined,
   OnBoard2: undefined,
   Home: undefined,
-  Tab: undefined
+  Choice: undefined
 }
 
 export type LoginStackParams = {
@@ -54,27 +54,37 @@ function OnBoardStack() {
         )}
       </Stack.Screen>
       <Stack.Screen name='Home' component={LoginStack}></Stack.Screen>
-      <Stack.Screen name='Tab' component={TabMain}></Stack.Screen>
     </Stack.Navigator>
   );
 }
 
 
-function LoginStack() {
+function LoginStack({ navigation }) {
   return (
     <StackLogin.Navigator >
       <StackLogin.Screen options={{ headerShown: false }} name='Login' component={LoginScreen}></StackLogin.Screen>
       <StackLogin.Screen options={{
         headerLeft: () => {
-          return <TouchableOpacity onPress={() => { } }>
+          return <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
             <Image
-              source={require('../../assets/Frame.png')} // Kendi ikonunuz
-              style={{ width: 24, height: 24, tintColor: '#8B51FF' }} // tintColor parametresi burada uygulanıyor
+              source={require('../../assets/Frame.png')}
+              style={{ width: 24, height: 24, tintColor: '#8B51FF' }}
             />
           </TouchableOpacity>;
         }, headerBackTitleVisible: false, headerShadowVisible: false, headerShown: true, headerTitle: 'Giriş Yap', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontSize: 24, fontFamily: 'Poppins-Medium' }
       }} name='SignIn' component={SignInScreen}></StackLogin.Screen>
-      <StackLogin.Screen options={{ headerBackTitleVisible: false, headerShadowVisible: false, headerShown: true, headerTitle: 'Kayıt Ol', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontSize: 24, fontFamily: 'Poppins-Medium' } }} name='Register' component={RegisterScreen}></StackLogin.Screen>
+      <StackLogin.Screen options={{
+        headerLeft: () => {
+          return <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
+            <Image
+              source={require('../../assets/Frame.png')}
+              style={{ width: 24, height: 24, tintColor: '#8B51FF' }}
+            />
+          </TouchableOpacity>;
+        }, headerBackTitleVisible: false, headerShadowVisible: false, headerShown: true, headerTitle: 'Kayıt Ol', headerTitleAlign: 'center', headerTitleStyle: { color: '#000000', fontSize: 24, fontFamily: 'Poppins-Medium' }
+      }} name='Register' component={RegisterScreen}></StackLogin.Screen>
+
+      <Stack.Screen options={{ headerShown: false }} name='Choice' component={ChoiceScreen}></Stack.Screen>
     </StackLogin.Navigator >
   )
 }
@@ -83,7 +93,7 @@ function LoginStack() {
 function TabMain() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name='Choice' component={ChoiceScreen}></Tab.Screen>
+      <Tab.Screen options={{ headerShown: false, tabBarShowLabel: false }} name='Choice' component={ChoiceScreen}></Tab.Screen>
     </Tab.Navigator>
   )
 }
