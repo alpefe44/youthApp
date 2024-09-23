@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 
@@ -12,6 +13,7 @@ export const LoginRequest = async ({ email, password }: LoginVRegisterProps) => 
 
         if (response) {
             console.log("Giriş Başarılı")
+            await AsyncStorage.setItem('token', response.data.token)
             return response.data
         }
 
@@ -36,3 +38,60 @@ export const RegisterRequest = async ({ email, password }: LoginVRegisterProps) 
         console.log(error)
     }
 }
+
+
+export const getSensitivies = async () => {
+    try {
+        const response = await axios.get('https://squid-app-2-pvqvd.ondigitalocean.app/users/sensitivities')
+
+        if (response) {
+            console.log(response.data, "Döndü")
+            return response.data
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getMySensitivies = async () => {
+    try {
+        const getToken = await AsyncStorage.getItem('token')
+        const response = await axios.get('https://squid-app-2-pvqvd.ondigitalocean.app/users/my-sensitivities', {
+            headers: {
+                'Authorization': `Bearer ${getToken}`
+            }
+        })
+
+        if (response) {
+            console.log(response.data, "Döndü")
+            console.log(getToken)
+            return response.data
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+export const getUser = async () => {
+    try {
+        const getToken = await AsyncStorage.getItem('token')
+        const response = await axios.get('https://squid-app-2-pvqvd.ondigitalocean.app/users/me', {
+            headers: {
+                'Authorization': `Bearer ${getToken}`
+            }
+        })
+
+        if (response) {
+            console.log(response.data, "Döndü")
+            return response.data
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+

@@ -1,27 +1,53 @@
 //import liraries
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ChoiceLabel from '../Components/ChoiceLabel';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getMySensitivies, getSensitivies } from '../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSensitivity, removeSensitivity } from '../Utils/UserSlice';
 
-const product = [
-    { id: 1, name: 'Gluten', select: 'false' },
-    { id: 2, name: 'Laktoz', select: 'false' },
-    { id: 3, name: 'Fındık', select: 'false' },
-    { id: 4, name: 'Aqua/Water', select: 'false' },
-    { id: 5, name: 'Glycerin', select: 'false' },
-    { id: 6, name: 'Sodium Hyaluronate', select: 'false' }
-];
+type ssObj = {
+    _id: string,
+    name: string
+}
 
 const ChoiceScreen = () => {
 
 
     const [selectedLanguage, setSelectedLanguage] = useState("");
+    const [products, setProducts] = useState([])
 
-    const [products, setProducts] = useState(product)
+    const [allProducts, setAllProducts] = useState([])
+
+    const { name, sensivities } = useSelector((state) => state.user)
+
+
+
+    const getSensivitiesItems = async () => {
+        const data = await getSensitivies();
+
+        if (data) {
+            setAllProducts(data)
+        }
+    }
+
+    const getMySensivitiesItems = async () => {
+        const data = await getMySensitivies();
+
+        if (data) {
+            setProducts(data)
+        }
+    }
+
+
+    useEffect(() => {
+        getMySensivitiesItems()
+        getSensivitiesItems()
+    }, [])
 
     return (
         <SafeAreaView style={styles.container}>
@@ -33,22 +59,32 @@ const ChoiceScreen = () => {
             <View style={[{ marginTop: 30 }, styles.pickerWrapper]}>
                 <Ionicons name="search" size={24} color="gray" style={styles.icon} />
                 <Picker
+                    mode='dropdown'
                     style={styles.picker}
                     placeholder='İçerik Ara'
                     selectedValue={selectedLanguage}
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedLanguage(itemValue)
                     }>
-                    <Picker.Item style={styles.pickerText} label="İçerik arayınız" value="" />
+                    {/* <Picker.Item style={styles.pickerText} label="İçerik arayınız" value="" />
                     <Picker.Item style={styles.pickerText} label="Seçenek 1" value="option1" />
                     <Picker.Item style={styles.pickerText} label="Seçenek 2" value="option2" />
-                    <Picker.Item style={styles.pickerText} label="Seçenek 3" value="option3" />
+                    <Picker.Item style={styles.pickerText} label="Seçenek 3" value="option3" /> */}
+
+                    {/* {
+                        allProducts.map((item: ssObj) => {
+                            return (
+                                <Picker.Item key={item._id} style={styles.pickerText} label={item.name} value={item._id} />
+                            )
+                        })
+                    } */}
+
                 </Picker>
             </View>
 
 
-            <View style = {{flex : 1}}>
-                <ChoiceLabel products={products} setProducts={setProducts}></ChoiceLabel>
+            <View style={{ flex: 1 }}>
+                <ChoiceLabel products={allProducts} setProducts={setProducts}></ChoiceLabel>
             </View>
         </SafeAreaView>
     );
@@ -58,7 +94,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        paddingTop : 16
+        paddingTop: 16
     },
     pickerWrapper: {
         alignSelf: 'center',

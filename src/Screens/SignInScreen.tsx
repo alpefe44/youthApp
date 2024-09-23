@@ -4,7 +4,9 @@ import RememberMeCheckbox from '../Components/RememberBox';
 import LoginButton from '../Components/LoginButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Feather from '@expo/vector-icons/Feather';
-import { LoginRequest } from '../api';
+import { getUser, LoginRequest } from '../api';
+import { useDispatch } from 'react-redux';
+import { login } from '../Utils/UserSlice';
 
 const SignInScreen = ({ navigation }) => {
 
@@ -15,12 +17,19 @@ const SignInScreen = ({ navigation }) => {
 
     const [isChecked, setIsChecked] = useState(false)
 
+    const dispatch = useDispatch();
+
+
     const handleLogin = async () => {
 
         const data = await LoginRequest({ email: email, password: password })
+        const getUserData = await getUser();
 
         if (data) {
             try {
+
+                dispatch(login({ name: getUserData.username, sensivities: getUserData.sensitivities }))
+
                 if (isChecked) {
                     await AsyncStorage.setItem("userEmail", email);
                     navigation.navigate('Choice')
@@ -61,7 +70,7 @@ const SignInScreen = ({ navigation }) => {
 
             <View style={{ marginVertical: 16, width: '90%' }}>
                 <Text style={{ color: '#1B1B1B', fontSize: 16, fontWeight: 'regular', paddingVertical: 10, fontFamily: 'Poppins-Regular' }}>Şifre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center'  }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <TextInput
                         onChangeText={(text) => setPassword(text)}
                         placeholder='Şifrenizi giriniz'

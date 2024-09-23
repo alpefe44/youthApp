@@ -4,6 +4,8 @@ import OnboardingPage from './src/Components/OnboardPage';
 import Router from './src/Navigation/Router';
 
 import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
+import { store } from './src/Utils/store';
 let customFonts = {
   'Poppins-Black': require('./assets/Poppins-Black.ttf'),
   'Poppins-Light': require('./assets/Poppins-Light.ttf'),
@@ -20,6 +22,8 @@ export default function App() {
     return <ActivityIndicator></ActivityIndicator>
   }
   return (
-    <Router></Router >
+    <Provider store={store}>
+      <Router></Router >
+    </Provider>
   )
 }
