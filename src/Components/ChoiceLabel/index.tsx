@@ -26,11 +26,9 @@ const ChoiceLabel = ({ products, setProducts }: Props) => {
     // }, [products])
 
     const { sensivities } = useSelector((state) => state.user)
-
     
     const dispatch = useDispatch()
 
-    
     const handleCheckboxToggle = (id: string) => {
         if (sensivities.includes(id)) {       
             dispatch(removeSensitivity(id));

@@ -94,4 +94,22 @@ export const getUser = async () => {
 }
 
 
-
+export const addSensitivities = async (sensitivitiesArray) => {
+    try {
+        const getToken = await AsyncStorage.getItem('token');
+        const response = await axios.post(
+            "https://squid-app-2-pvqvd.ondigitalocean.app/users/sensitivities/add",
+            {
+                sensitivities: sensitivitiesArray  
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${getToken}`  
+                }
+            }
+        );
+        return response.data; 
+    } catch (error) {
+        console.error(error);
+    }
+};
