@@ -94,7 +94,7 @@ const ChoiceScreen = () => {
             <View>
                 <ChoiceLabel products={filteredProducts} setProducts={setProducts}></ChoiceLabel>
                 <View style={{ width: '90%', alignSelf: 'center', marginTop: 37 }}>
-                    <LoginButton disabled={false} isRegister={false} title='Devam Et' onPress={() => console.log("safasf")}></LoginButton>
+                    <LoginButton disabled={false} isRegister={false} title='Devam Et' onPress={() => saveSensivities(sensivities)}></LoginButton>
                 </View>
             </View>
         </SafeAreaView>
