@@ -1,14 +1,15 @@
 //import liraries
 import React, { Component, useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ChoiceLabel from '../Components/ChoiceLabel';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getMySensitivies, getSensitivies } from '../api';
+import { addSensitivities, getMySensitivies, getSensitivies } from '../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSensitivity, removeSensitivity } from '../Utils/UserSlice';
+import LoginButton from '../Components/LoginButton';
 
 type ssObj = {
     _id: string,
@@ -18,10 +19,12 @@ type ssObj = {
 const ChoiceScreen = () => {
 
 
-    const [selectedLanguage, setSelectedLanguage] = useState("");
     const [products, setProducts] = useState([])
 
-    const [allProducts, setAllProducts] = useState([])
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filteredProducts, setFilteredProducts] = useState<ssObj[]>([]);
+    const [allProducts, setAllProducts] = useState<ssObj[]>([]);
+
 
     const { name, sensivities } = useSelector((state) => state.user)
 
@@ -32,6 +35,7 @@ const ChoiceScreen = () => {
 
         if (data) {
             setAllProducts(data)
+            setFilteredProducts(data);
         }
     }
 
@@ -42,6 +46,27 @@ const ChoiceScreen = () => {
             setProducts(data)
         }
     }
+
+
+    const saveSensivities = async (sensitivities) => {
+        const data = await addSensitivities(sensitivities)
+
+        if(data) {
+            console.log(data)
+        }
+    }
+
+    const handleSearch = (text: string) => {
+        setSearchQuery(text);
+        if (text === "") {
+            setFilteredProducts(allProducts);
+        } else {
+            const filtered = allProducts.filter(product =>
+                product.name.toLowerCase().includes(text.toLowerCase())
+            );
+            setFilteredProducts(filtered);
+        }
+    };
 
 
     useEffect(() => {
@@ -56,35 +81,21 @@ const ChoiceScreen = () => {
                 <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#838383', textAlign: 'center' }}>Sana uygun ürün önerilerinde bulunabilmemiz için istemediğin ürün içeriklerini işaretle</Text>
             </View>
 
-            <View style={[{ marginTop: 30 }, styles.pickerWrapper]}>
+            <View style={[{ marginTop: 30 }, styles.searchWrapper]}>
                 <Ionicons name="search" size={24} color="gray" style={styles.icon} />
-                <Picker
-                    mode='dropdown'
-                    style={styles.picker}
-                    placeholder='İçerik Ara'
-                    selectedValue={selectedLanguage}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedLanguage(itemValue)
-                    }>
-                    {/* <Picker.Item style={styles.pickerText} label="İçerik arayınız" value="" />
-                    <Picker.Item style={styles.pickerText} label="Seçenek 1" value="option1" />
-                    <Picker.Item style={styles.pickerText} label="Seçenek 2" value="option2" />
-                    <Picker.Item style={styles.pickerText} label="Seçenek 3" value="option3" /> */}
-
-                    {/* {
-                        allProducts.map((item: ssObj) => {
-                            return (
-                                <Picker.Item key={item._id} style={styles.pickerText} label={item.name} value={item._id} />
-                            )
-                        })
-                    } */}
-
-                </Picker>
+                <TextInput
+                    style={styles.searchInput}
+                    placeholder="İçerik Ara"
+                    value={searchQuery}
+                    onChangeText={handleSearch}
+                />
             </View>
 
-
-            <View style={{ flex: 1 }}>
-                <ChoiceLabel products={allProducts} setProducts={setProducts}></ChoiceLabel>
+            <View>
+                <ChoiceLabel products={filteredProducts} setProducts={setProducts}></ChoiceLabel>
+                <View style={{ width: '90%', alignSelf: 'center', marginTop: 37 }}>
+                    <LoginButton disabled={false} isRegister={false} title='Devam Et' onPress={() => console.log("safasf")}></LoginButton>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -104,6 +115,22 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         backgroundColor: '#F5F5F5',
         paddingLeft: 24
+    },
+    searchWrapper: {
+        alignSelf: 'center',
+        width: '90%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 12,
+        backgroundColor: '#F5F5F5',
+        paddingLeft: 24
+    },
+    searchInput: {
+        flex: 1,
+        height: 44,
+        fontSize: 16,
+        paddingLeft: 10,
+        backgroundColor: 'transparent'
     },
     picker: {
         flex: 1,

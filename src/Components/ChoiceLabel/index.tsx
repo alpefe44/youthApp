@@ -26,19 +26,19 @@ const ChoiceLabel = ({ products, setProducts }: Props) => {
     // }, [products])
 
     const { sensivities } = useSelector((state) => state.user)
-    
+
     const dispatch = useDispatch()
 
     const handleCheckboxToggle = (id: string) => {
-        if (sensivities.includes(id)) {       
+        if (sensivities.includes(id)) {
             dispatch(removeSensitivity(id));
-        } else {  
+        } else {
             dispatch(addSensitivity(id));
         }
     };
 
     return (
-        <View style={{ flex: 1, padding: 16 }}>
+        <View style={{ padding: 16 }}>
             <FlatList
                 data={products}
                 keyExtractor={(item) => item._id}
@@ -62,13 +62,5 @@ const ChoiceLabel = ({ products, setProducts }: Props) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
-});
 
 export default ChoiceLabel;
