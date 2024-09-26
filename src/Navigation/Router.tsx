@@ -15,6 +15,7 @@ export type StackParams = {
   OnBoard1: undefined,
   OnBoard2: undefined,
   Home: undefined,
+  Home2: undefined,
   Choice: undefined
 }
 
@@ -85,6 +86,7 @@ function LoginStack({ navigation }) {
       }} name='Register' component={RegisterScreen}></StackLogin.Screen>
 
       <Stack.Screen options={{ headerShown: false }} name='Choice' component={ChoiceScreen}></Stack.Screen>
+      <Stack.Screen options={{ headerShown: false }} name='Home2' component={TabMain}></Stack.Screen>
     </StackLogin.Navigator >
   )
 }
@@ -93,7 +95,8 @@ function LoginStack({ navigation }) {
 function TabMain() {
   return (
     <Tab.Navigator>
-      <Tab.Screen options={{ headerShown: false, tabBarShowLabel: false }} name='Choice' component={ChoiceScreen}></Tab.Screen>
+      <Tab.Screen options={{ headerShown: true, tabBarShowLabel: true }} name='Home' component={HomeScreen}></Tab.Screen>
+      <Tab.Screen options={{ headerShown: false, tabBarShowLabel: true }} name='Choice' component={ChoiceScreen}></Tab.Screen>
     </Tab.Navigator>
   )
 }

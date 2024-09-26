@@ -16,7 +16,7 @@ type ssObj = {
     name: string
 }
 
-const ChoiceScreen = () => {
+const ChoiceScreen = ({ navigation }) => {
 
 
     const [products, setProducts] = useState([])
@@ -51,8 +51,11 @@ const ChoiceScreen = () => {
     const saveSensivities = async (sensitivities) => {
         const data = await addSensitivities(sensitivities)
 
-        if(data) {
-            console.log(data)
+        if (data) {
+            console.log("data")
+            navigation.navigate('Home2')
+        } else {
+            navigation.navigate('Home2')
         }
     }
 
@@ -92,7 +95,7 @@ const ChoiceScreen = () => {
             </View>
 
             <View>
-                <ChoiceLabel products={filteredProducts} setProducts={setProducts}></ChoiceLabel>
+                <ChoiceLabel navig={navigation} products={filteredProducts} setProducts={setProducts}></ChoiceLabel>
                 <View style={{ width: '90%', alignSelf: 'center', marginTop: 37 }}>
                     <LoginButton disabled={false} isRegister={false} title='Devam Et' onPress={() => saveSensivities(sensivities)}></LoginButton>
                 </View>

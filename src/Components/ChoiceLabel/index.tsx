@@ -8,10 +8,11 @@ import { addSensitivity, removeSensitivity } from '../../Utils/UserSlice';
 
 type Props = {
     products: Array<any>,
-    setProducts: any
+    setProducts: any,
+    navig: any
 }
 
-const ChoiceLabel = ({ products, setProducts }: Props) => {
+const ChoiceLabel = ({ products, setProducts, navig }: Props) => {
 
     // const toggleSelect = (id) => {
     //     setProducts(prevProducts =>
