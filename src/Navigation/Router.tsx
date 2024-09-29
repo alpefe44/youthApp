@@ -9,9 +9,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChoiceScreen from '../Screens/ChoiceScreen';
 
 import { Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
+import SplashScreen from '../Screens/SplashScreen';
 
 
 export type StackParams = {
+  Splash: undefined,
   OnBoard1: undefined,
   OnBoard2: undefined,
   Home: undefined,
@@ -33,11 +35,12 @@ const Tab = createBottomTabNavigator<any>();
 
 function OnBoardStack() {
   return (
-    <Stack.Navigator initialRouteName='OnBoard1' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='Splash' screenOptions={{ headerShown: false }}>
+      <Stack.Screen options={{ headerShown: false }} name='Splash' component={SplashScreen}></Stack.Screen>
       <Stack.Screen name="OnBoard1">
         {() => (
           <OnboardingPage
-            imageUrl={require('../../assets/iphone12pro.png')}
+            imageUrl='logo1'
             desc="Hassasiyetlerinin olduğu ürünleri filtreleyip, sana en uygun ürün önerilerinde bulunuyoruz."
             title="Senin İçin"
             isSkip={true}
@@ -47,7 +50,7 @@ function OnBoardStack() {
       <Stack.Screen name="OnBoard2">
         {() => (
           <OnboardingPage
-            imageUrl={require('../../assets/iphone2.png')}
+            imageUrl='logo2'
             desc="Senin sağlığın bizim sağlığımız"
             title="Ne de olsa"
             isSkip={false}
@@ -94,9 +97,33 @@ function LoginStack({ navigation }) {
 
 function TabMain() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen options={{ headerShown: true, tabBarShowLabel: true, headerTitle: 'Ana Sayfa' , headerTitleAlign : 'center' , headerTitleStyle : {color : '#1B1B1B' , fontSize : 24 , fontFamily : 'Poppins-Medium'}}} name='Home' component={HomeScreen}></Tab.Screen>
-      <Tab.Screen options={{ headerShown: false, tabBarShowLabel: true }} name='Choice' component={ChoiceScreen}></Tab.Screen>
+    <Tab.Navigator screenOptions={{
+      tabBarStyle: {
+        width: '100%',
+        justifyContent: 'center',
+      }
+    }}>
+      <Tab.Screen options={{
+        tabBarActiveTintColor: '#8B51FF',
+        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
+        tabBarIcon: ({ color, size, focused }) => (
+          <Image
+            source={require('../../assets/home.png')} // 
+            style={{ width: size, height: size, tintColor: focused ? '#8B51FF' : 'gray' }}
+          />
+        ), title: 'Ana Sayfa', headerShown: true, tabBarShowLabel: true, headerTitle: 'Ana Sayfa', headerTitleAlign: 'center', headerTitleStyle: { color: '#1B1B1B', fontSize: 24, fontFamily: 'Poppins-Medium' }
+      }}
+        name='Home' component={HomeScreen}></Tab.Screen>
+      <Tab.Screen options={{
+        tabBarActiveTintColor: '#8B51FF',
+        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
+        tabBarIcon: ({ color, size, focused }) => (
+          <Image
+            source={require('../../assets/choicepng.png')} // 
+            style={{ width: size, height: size, tintColor: focused ? '##8B51FF' : 'gray' }}
+          />),
+        headerShown: false, tabBarShowLabel: true, title: 'Tercihlerim'
+      }} name='Choice' component={ChoiceScreen}></Tab.Screen>
     </Tab.Navigator>
   )
 }

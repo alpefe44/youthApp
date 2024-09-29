@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native';
 import RememberMeCheckbox from '../Components/RememberBox';
 import LoginButton from '../Components/LoginButton';
-import { RegisterRequest } from '../api';
+import { getUser, RegisterRequest } from '../api';
 import Feather from '@expo/vector-icons/Feather';
+import { useDispatch } from 'react-redux';
+import { login } from '../Utils/UserSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width } = Dimensions.get('screen');
 
@@ -18,16 +21,22 @@ const RegisterScreen = ({ navigation }) => {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const dispatch = useDispatch()
+
 
     const handleRegister = async () => {
 
         const data = await RegisterRequest({ email: email, password: password })
+        const getUserData = await getUser();
 
         if (data) {
-            console.log("Kayıt Başarılı")
+            try {
+                dispatch(login({ name: getUserData.username, sensivities: getUserData.sensitivities }))
+                navigation.navigate('Choice')
 
-        } else {
-            console.error("kayıt başarısız");
+            } catch (error) {
+                console.error("Failed to save email", error);
+            }
         }
     }
 

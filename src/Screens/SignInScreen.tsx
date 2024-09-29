@@ -27,7 +27,6 @@ const SignInScreen = ({ navigation }) => {
 
         if (data) {
             try {
-
                 dispatch(login({ name: getUserData.username, sensivities: getUserData.sensitivities }))
 
                 if (isChecked) {

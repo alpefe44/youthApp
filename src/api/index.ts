@@ -27,7 +27,8 @@ export const RegisterRequest = async ({ email, password }: LoginVRegisterProps) 
     try {
         const response = await axios.post('https://squid-app-2-pvqvd.ondigitalocean.app/auth/register', { username: email, password: password })
 
-        if (response) {
+        if (response.status === 201) {
+            await AsyncStorage.setItem('token', response.data.token)
             return response.data
         }
 

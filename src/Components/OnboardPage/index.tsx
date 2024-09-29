@@ -8,6 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParams } from '../../Navigation/Router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+import Logo1 from '../../../assets/ilkip.svg'
+import Logo2 from '../../../assets/ikinciip.svg'
+
+const logos = {
+    logo1: Logo1,
+    logo2: Logo2,
+};
+
 type Props = {
     imageUrl: any,
     title: string,
@@ -22,7 +30,7 @@ const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#FFFFFF' }}>
             <ImageBackground source={require('../../../assets/morarka.png')} style={styles.topBg}>
-                <Image style={styles.phoneImage} source={imageUrl}></Image>
+                {React.createElement(logos[imageUrl], { style: styles.phoneImage })}
             </ImageBackground>
 
             <View style={styles.secondMainView}>

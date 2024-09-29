@@ -10,6 +10,7 @@ import { addSensitivities, getMySensitivies, getSensitivies } from '../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSensitivity, removeSensitivity } from '../Utils/UserSlice';
 import LoginButton from '../Components/LoginButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type ssObj = {
     _id: string,
@@ -75,6 +76,13 @@ const ChoiceScreen = ({ navigation }) => {
     useEffect(() => {
         getMySensivitiesItems()
         getSensivitiesItems()
+
+        const dd = async () => {
+            const ddd = await AsyncStorage.getItem('token')
+            console.log(ddd)
+        }
+
+        dd()
     }, [])
 
     return (

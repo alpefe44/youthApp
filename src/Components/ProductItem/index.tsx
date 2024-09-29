@@ -37,13 +37,13 @@ const ProductItem = ({ item }: Props) => {
 
     useEffect(() => {
         getSens()
-    }, [])
+    }, [sensivities])
 
     return (
         <Pressable style={styles.container}>
             <View style={{ backgroundColor: '#DC1010', padding: 3, borderRadius: 8, position: 'absolute', top: 12, right: 10, alignItems: 'center' }}>
                 <Text style={{ color: '#FFFFFF', fontSize: 10, fontFamily: 'Poppins-Regular' }}>{
-                    sens.length > 1 ? `${sens[0].name} + ${sens.length}` : sens[0].name
+                    sens.length > 1 ? `${sens[0]?.name} + ${sens.length}` : sens[0]?.name
                 }</Text>
             </View>
             <Image source={{ uri: item.image }} style={{ width: 109, height: 119, marginTop: 25 }}></Image>
