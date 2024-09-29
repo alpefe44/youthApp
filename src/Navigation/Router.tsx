@@ -95,7 +95,7 @@ function LoginStack({ navigation }) {
 function TabMain() {
   return (
     <Tab.Navigator>
-      <Tab.Screen options={{ headerShown: true, tabBarShowLabel: true }} name='Home' component={HomeScreen}></Tab.Screen>
+      <Tab.Screen options={{ headerShown: true, tabBarShowLabel: true, headerTitle: 'Ana Sayfa' , headerTitleAlign : 'center' , headerTitleStyle : {color : '#1B1B1B' , fontSize : 24 , fontFamily : 'Poppins-Medium'}}} name='Home' component={HomeScreen}></Tab.Screen>
       <Tab.Screen options={{ headerShown: false, tabBarShowLabel: true }} name='Choice' component={ChoiceScreen}></Tab.Screen>
     </Tab.Navigator>
   )
