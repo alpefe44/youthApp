@@ -6,6 +6,8 @@ import ProductItem from '../Components/ProductItem';
 import { useSelector } from 'react-redux';
 import { getProducts } from '../api';
 
+import Banner from '../../assets/indirim.svg'
+
 
 
 const HomeScreen = () => {
@@ -40,7 +42,8 @@ const HomeScreen = () => {
             </View>
 
             <View style={{ marginTop: 16, marginBottom: 13 }}>
-                <Image source={require('../../assets/indirim.png')} style={{ height: 164, width: '100%' }}></Image>
+                <Banner style={{ width: '100%', height: 164 }}></Banner>
+                {/* <Image source={require('../../assets/indirim.png')} style={{ height: 164, width: '100%' }}></Image> */}
             </View>
 
             <View>
