@@ -1,32 +1,60 @@
-import React, { Component, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Image, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import ProductItem from '../Components/ProductItem';
-import { useSelector } from 'react-redux';
-import { getProducts } from '../api';
-
-import Banner from '../../assets/indirim.svg'
-
-
+import { getProducts } from '../api'; // Assuming this is for initial data fetch
+import Banner from '../../assets/indirim.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
 
     const [searchQuery, setSearchQuery] = useState("");
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const getProductData = async () => {
-        const data = await getProducts();
+    const getProductData = async (query = "") => {
+        setLoading(true);
+        let endpoint = query
+            ? `https://squid-app-2-pvqvd.ondigitalocean.app/products/search?q=${query}`
+            : "https://squid-app-2-pvqvd.ondigitalocean.app/products/list"; // Fetch all products if no query
 
-        if (data) {
-            setProducts(data)
+        try {
+            const getToken = await AsyncStorage.getItem('token')
+            const response = await fetch(endpoint,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${getToken}`
+                    }
+                }
+            );
+            const data = await response.json();
+
+            if (data) {
+                setProducts(data);
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setLoading(false);
         }
-    }
-
+    };
 
     useEffect(() => {
-        getProductData()
-    }, [])
+        getProductData();
+    }, []);
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            if (searchQuery === "") {
+                getProductData()
+            } else {
+                getProductData(searchQuery);
+            }
+        }, 500); // 500ms debounce delay
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchQuery]);
 
     return (
         <View style={styles.container}>
@@ -42,8 +70,7 @@ const HomeScreen = () => {
             </View>
 
             <View style={{ marginTop: 16, marginBottom: 13 }}>
-                <Banner style={{ width: '100%', height: 164 }}></Banner>
-                {/* <Image source={require('../../assets/indirim.png')} style={{ height: 164, width: '100%' }}></Image> */}
+                <Banner style={{ width: '100%', height: 164 }} />
             </View>
 
             <View>
@@ -53,16 +80,19 @@ const HomeScreen = () => {
                 </View>
             </View>
 
-            <FlatList
-                data={products}
-                horizontal
-                renderItem={({ item }) => <ProductItem item={item}></ProductItem>}
-            ></FlatList>
-
+            {loading ? (
+                <ActivityIndicator size={'large'}></ActivityIndicator>
+            ) : (
+                <FlatList
+                    data={products}
+                    horizontal
+                    keyExtractor={(item) => item._id.toString()}
+                    renderItem={({ item }) => <ProductItem item={item} />}
+                />
+            )}
         </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -90,6 +120,5 @@ const styles = StyleSheet.create({
         left: 10,
     },
 });
-
 
 export default HomeScreen;

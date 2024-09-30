@@ -11,7 +11,9 @@ import ChoiceScreen from '../Screens/ChoiceScreen';
 import { Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
 import SplashScreen from '../Screens/SplashScreen';
 
+import SimpeHomeIcon from '../../assets/homee.svg'
 import HomeIcon from '../../assets/home.svg'
+import RenkliChoice from '../../assets/renklichoice.svg'
 import ChoiceIcon from '../../assets/choice.svg'
 
 
@@ -111,9 +113,12 @@ function TabMain() {
         tabBarActiveTintColor: '#8B51FF',
         tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
         tabBarIcon: ({ color, size, focused }) => (
-          <HomeIcon
-            style={{ width: size, height: size, borderColor: focused ? '#8B51FF' : 'gray' }}
-          />
+          focused ? <SimpeHomeIcon
+            style={{ width: size, height: size }}>
+          </SimpeHomeIcon> :
+            <HomeIcon
+              style={{ width: size, height: size }}
+            />
         ), title: 'Ana Sayfa', headerShown: true, tabBarShowLabel: true, headerTitle: 'Ana Sayfa', headerTitleAlign: 'center', headerTitleStyle: { color: '#1B1B1B', fontSize: 24, fontFamily: 'Poppins-Medium' }
       }}
         name='Home' component={HomeScreen}></Tab.Screen>
@@ -122,9 +127,12 @@ function TabMain() {
         tabBarActiveTintColor: '#8B51FF',
         tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
         tabBarIcon: ({ color, size, focused }) => (
-          <ChoiceIcon
-            style={{ width: size, height: size, borderColor: focused ? '#8B51FF' : 'gray' }}
-          />),
+          focused ? <RenkliChoice
+            style={{ width: size, height: size }}>
+          </RenkliChoice> :
+            <ChoiceIcon
+              style={{ width: size, height: size }}
+            />),
         headerShown: false, tabBarShowLabel: true, title: 'Tercihlerim'
       }} name='Choice' component={ChoiceScreen}></Tab.Screen>
     </Tab.Navigator>

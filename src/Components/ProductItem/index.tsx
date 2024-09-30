@@ -10,11 +10,9 @@ type Props = {
 
 const ProductItem = ({ item }: Props) => {
 
-
     const [sens, setSens] = useState([])
 
     const { sensivities } = useSelector((state) => state.user)
-
 
 
     const getSens = async () => {
@@ -29,7 +27,6 @@ const ProductItem = ({ item }: Props) => {
             });
 
             setSens(fsens);
-            console.log(fsens, "fsens");
         }
     };
 
@@ -49,6 +46,7 @@ const ProductItem = ({ item }: Props) => {
             <Image source={{ uri: item.image }} style={{ width: 109, height: 119, marginTop: 25 }}></Image>
             <View>
                 <Text style={{ color: '#181725', fontFamily: 'Poppins-Medium', fontSize: 10 }}>{item.name}</Text>
+                <Text style={{ color: '#7C7C7C', fontFamily: 'Poppins-Regular', fontSize: 9 }}>{item?.unitPrice?.price} TL / {item?.unitPrice.unit}</Text>
                 <Text style={{
                     color: '#FE3CB1', fontFamily: 'Poppins-Medium', fontSize: 14,
                     textShadowOffset: { width: 2, height: 4 },
