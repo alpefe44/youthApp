@@ -32,12 +32,11 @@ const HomeScreen = () => {
 
             if (data) {
                 setProducts(data);
+                setLoading(false)
             }
         } catch (error) {
             console.error("Error fetching products:", error);
-        } finally {
-            setLoading(false);
-        }
+        } 
     };
 
     useEffect(() => {
@@ -45,15 +44,7 @@ const HomeScreen = () => {
     }, []);
 
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            if (searchQuery === "") {
-                getProductData()
-            } else {
-                getProductData(searchQuery);
-            }
-        }, 500); // 500ms debounce delay
-
-        return () => clearTimeout(delayDebounceFn);
+        getProductData(searchQuery);
     }, [searchQuery]);
 
     return (
@@ -70,7 +61,7 @@ const HomeScreen = () => {
             </View>
 
             <View style={{ marginTop: 16, marginBottom: 13 }}>
-                <Banner style={{ width: '100%', height: 164 }} />
+                <Banner/>
             </View>
 
             <View>
