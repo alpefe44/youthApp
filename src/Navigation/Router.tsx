@@ -107,6 +107,7 @@ function TabMain() {
       }
     }}>
       <Tab.Screen options={{
+        headerShadowVisible: false,
         tabBarActiveTintColor: '#8B51FF',
         tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
         tabBarIcon: ({ color, size, focused }) => (
@@ -117,6 +118,7 @@ function TabMain() {
       }}
         name='Home' component={HomeScreen}></Tab.Screen>
       <Tab.Screen options={{
+        headerShadowVisible: false,
         tabBarActiveTintColor: '#8B51FF',
         tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
         tabBarIcon: ({ color, size, focused }) => (

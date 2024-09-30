@@ -55,7 +55,7 @@ const ProductItem = ({ item }: Props) => {
                     textShadowColor: '#666666',
                     textShadowRadius: 12,
                     elevation: 1,
-                }}>{item.price} TL</Text>
+                }}>{item.price.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL</Text>
             </View>
         </Pressable>
     );
