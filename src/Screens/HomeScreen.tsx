@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator, Pressable } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import ProductItem from '../Components/ProductItem';
@@ -7,7 +7,7 @@ import { getProducts } from '../api'; // Assuming this is for initial data fetch
 import Banner from '../../assets/indirim.svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState([]);
@@ -36,7 +36,7 @@ const HomeScreen = () => {
             }
         } catch (error) {
             console.error("Error fetching products:", error);
-        } 
+        }
     };
 
     useEffect(() => {
@@ -57,11 +57,13 @@ const HomeScreen = () => {
                     value={searchQuery}
                     onChangeText={(text) => setSearchQuery(text)}
                 />
-                <FontAwesome6 name="barcode" size={24} color="gray" style={{ right: 10 }} />
+                <Pressable onPress={() => navigation.navigate('QrPage')}>
+                    <FontAwesome6 name="barcode" size={24} color="gray" style={{ right: 10 }} />
+                </Pressable>
             </View>
 
             <View style={{ marginTop: 16, marginBottom: 13 }}>
-                <Banner/>
+                <Banner style={{ alignSelf: 'center' }} />
             </View>
 
             <View>

@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
 import { getSensitivies } from '../../api';
 
+import Entypo from '@expo/vector-icons/Entypo';
+
 type Props = {
     item: any
 }
@@ -30,8 +32,6 @@ const ProductItem = ({ item }: Props) => {
         }
     };
 
-
-
     useEffect(() => {
         getSens()
     }, [sensivities])
@@ -46,14 +46,18 @@ const ProductItem = ({ item }: Props) => {
             <Image source={{ uri: item.image }} style={{ width: 109, height: 119, marginTop: 25 }}></Image>
             <View>
                 <Text style={{ color: '#181725', fontFamily: 'Poppins-Medium', fontSize: 10 }}>{item.name}</Text>
-                <Text style={{ color: '#7C7C7C', fontFamily: 'Poppins-Regular', fontSize: 9 }}>{item?.unitPrice?.price} TL / {item?.unitPrice.unit}</Text>
-                <Text style={{
-                    color: '#FE3CB1', fontFamily: 'Poppins-Medium', fontSize: 14,
-                    textShadowOffset: { width: 2, height: 4 },
-                    textShadowColor: '#666666',
-                    textShadowRadius: 12,
-                    elevation: 1,
-                }}>{item.price.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL</Text>
+                <View style={{ marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View>
+                        <Text style={{ color: '#7C7C7C', fontFamily: 'Poppins-Regular', fontSize: 9 }}>{item?.unitPrice?.price} TL / {item?.unitPrice.unit}</Text>
+                        <Text style={{
+                            color: '#FE3CB1', fontFamily: 'Poppins-Medium', fontSize: 14,
+                        }}>{item.price.toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL</Text>
+                    </View>
+
+                    <Pressable style={{ width: 36, height: 36, borderRadius: 8, backgroundColor: '#8B51FF', alignItems: 'center', justifyContent: 'center' }}>
+                        <Entypo name="plus" size={24} color="white" />
+                    </Pressable>
+                </View>
             </View>
         </Pressable>
     );

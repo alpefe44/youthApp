@@ -124,3 +124,19 @@ export const getProducts = async () => {
         console.log(error)
     }
 }
+
+
+export const getProductById = async (id: string) => {
+    try {
+        const getToken = await AsyncStorage.getItem('token');
+        const response = await axios.get(`https://squid-app-2-pvqvd.ondigitalocean.app/products/${id}`, {
+            headers: {
+                Authorization: `Bearer ${getToken}`
+            }
+        })
+
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}

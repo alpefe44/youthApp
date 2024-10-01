@@ -15,6 +15,8 @@ import SimpeHomeIcon from '../../assets/homee.svg'
 import HomeIcon from '../../assets/home.svg'
 import RenkliChoice from '../../assets/renklichoice.svg'
 import ChoiceIcon from '../../assets/choice.svg'
+import QrPage from '../Screens/QrPage';
+import DetailPage from '../Screens/DetailPage';
 
 
 export type StackParams = {
@@ -23,7 +25,9 @@ export type StackParams = {
   OnBoard2: undefined,
   Home: undefined,
   Home2: undefined,
-  Choice: undefined
+  Choice: undefined,
+  QrPage: undefined,
+  Detail: string
 }
 
 export type LoginStackParams = {
@@ -94,6 +98,8 @@ function LoginStack({ navigation }) {
       }} name='Register' component={RegisterScreen}></StackLogin.Screen>
 
       <Stack.Screen options={{ headerShown: false }} name='Choice' component={ChoiceScreen}></Stack.Screen>
+      <Stack.Screen options={{ headerShown: false }} name='QrPage' component={QrPage}></Stack.Screen>
+      <Stack.Screen options={{ headerShown: false }} name='Detail' component={DetailPage}></Stack.Screen>
       <Stack.Screen options={{ headerShown: false }} name='Home2' component={TabMain}></Stack.Screen>
     </StackLogin.Navigator >
   )
