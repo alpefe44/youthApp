@@ -31,16 +31,25 @@ const SignInScreen = ({ navigation }) => {
 
                 if (isChecked) {
                     await AsyncStorage.setItem("userEmail", email);
-                    navigation.navigate('Choice')
+                    navigation.replace('Choice')
                 } else {
                     console.log("Giriş Başarılı signinscreen")
-                    navigation.navigate('Choice')
+                    navigation.replace('Choice')
                 }
             } catch (error) {
                 console.error("Failed to save email", error);
             }
         }
     };
+
+    // useEffect(() => {
+    //     // Ekran açıldığında geri gitmeyi engelle
+    //     const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+    //         e.preventDefault();
+    //     });
+
+    //     return unsubscribe; 
+    // }, [navigation]);
 
     useEffect(() => {
         const getLocal = async () => {

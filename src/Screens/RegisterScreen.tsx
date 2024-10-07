@@ -106,7 +106,7 @@ const RegisterScreen = ({ navigation }) => {
 
             <View style={{ marginTop: 28, width: '90%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                 <Text style={{ textAlign: 'center', color: '#838383', fontFamily: 'Poppins-Regular', fontSize: 16 }}>Zaten hesabın var mı? </Text>
-                <Pressable onPress={() => navigation.navigate('SignIn')}><Text style={{ color: '#8B51FF', fontFamily: 'Poppins-SemiBold', fontSize: 16 }}>Giriş Yap</Text></Pressable>
+                <Pressable onPress={() => navigation.replace('SignIn')}><Text style={{ color: '#8B51FF', fontFamily: 'Poppins-SemiBold', fontSize: 16 }}>Giriş Yap</Text></Pressable>
             </View>
         </View>
     );

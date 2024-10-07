@@ -129,13 +129,38 @@ export const getProducts = async () => {
 export const getProductById = async (id: string) => {
     try {
         const getToken = await AsyncStorage.getItem('token');
-        const response = await axios.get(`https://squid-app-2-pvqvd.ondigitalocean.app/products/${id}`, {
+        const response = await axios.post(`https://squid-app-2-pvqvd.ondigitalocean.app/products/${id}`, {}, {
             headers: {
                 Authorization: `Bearer ${getToken}`
             }
         })
 
-        return response.data
+        if (response) {
+            return response.data
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const deleteAccount = async () => {
+    try {
+        const getToken = await AsyncStorage.getItem('token');
+
+        if (getToken) {
+            const response = await axios.post(`https://squid-app-2-pvqvd.ondigitalocean.app/users/delete`, {}, {
+                headers: {
+                    Authorization: `Bearer ${getToken}`
+                }
+            })
+
+            if (response) {
+                return response.data
+            }
+        }
+
     } catch (error) {
         console.log(error)
     }

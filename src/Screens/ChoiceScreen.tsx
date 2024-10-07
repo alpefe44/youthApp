@@ -54,9 +54,9 @@ const ChoiceScreen = ({ navigation }) => {
 
         if (data) {
             console.log("data")
-            navigation.navigate('Home2')
+            navigation.replace('Home2')
         } else {
-            navigation.navigate('Home2')
+            navigation.replace('Home2')
         }
     }
 

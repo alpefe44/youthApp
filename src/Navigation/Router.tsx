@@ -11,12 +11,15 @@ import ChoiceScreen from '../Screens/ChoiceScreen';
 import { Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
 import SplashScreen from '../Screens/SplashScreen';
 
+import User from '../../assets/user.svg'
+import UserP from '../../assets/userr.svg'
 import SimpeHomeIcon from '../../assets/homee.svg'
 import HomeIcon from '../../assets/home.svg'
 import RenkliChoice from '../../assets/renklichoice.svg'
 import ChoiceIcon from '../../assets/choice.svg'
 import QrPage from '../Screens/QrPage';
 import DetailPage from '../Screens/DetailPage';
+import ProfileScreen from '../Screens/Profile';
 
 
 export type StackParams = {
@@ -26,6 +29,7 @@ export type StackParams = {
   Home: undefined,
   Home2: undefined,
   Choice: undefined,
+  Profile: undefined,
   QrPage: undefined,
   Detail: string
 }
@@ -78,7 +82,7 @@ function LoginStack({ navigation }) {
       <StackLogin.Screen options={{ headerShown: false }} name='Login' component={LoginScreen}></StackLogin.Screen>
       <StackLogin.Screen options={{
         headerLeft: () => {
-          return <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
+          return <TouchableOpacity onPress={() => { navigation.replace('Login') }}>
             <Image
               source={require('../../assets/Frame.png')}
               style={{ width: 24, height: 24, tintColor: '#8B51FF' }}
@@ -88,7 +92,7 @@ function LoginStack({ navigation }) {
       }} name='SignIn' component={SignInScreen}></StackLogin.Screen>
       <StackLogin.Screen options={{
         headerLeft: () => {
-          return <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
+          return <TouchableOpacity onPress={() => { navigation.replace('Login') }}>
             <Image
               source={require('../../assets/Frame.png')}
               style={{ width: 24, height: 24, tintColor: '#8B51FF' }}
@@ -141,6 +145,20 @@ function TabMain() {
             />),
         headerShown: false, tabBarShowLabel: true, title: 'Tercihlerim'
       }} name='Choice' component={ChoiceScreen}></Tab.Screen>
+
+      <Tab.Screen options={{
+        headerShadowVisible: false,
+        tabBarActiveTintColor: '#8B51FF',
+        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
+        tabBarIcon: ({ color, size, focused }) => (
+          focused ? <UserP
+            style={{ width: size, height: size }}>
+          </UserP> :
+            <User
+              style={{ width: size, height: size }}
+            />),
+        headerShown: false, tabBarShowLabel: true, title: 'Hesabım'
+      }} name='Profile' component={ProfileScreen}></Tab.Screen>
     </Tab.Navigator>
   )
 }
