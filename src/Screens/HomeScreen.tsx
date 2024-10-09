@@ -80,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
                     data={products}
                     horizontal
                     keyExtractor={(item) => item._id.toString()}
-                    renderItem={({ item }) => <ProductItem item={item} />}
+                    renderItem={({ item }) => <ProductItem navigation={navigation} item={item} />}
                 />
             )}
         </View>

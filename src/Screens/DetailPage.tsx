@@ -1,8 +1,10 @@
 import React, { Component, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { getProductById } from '../api';
 import { Double } from 'react-native/Libraries/Types/CodegenTypes';
 
+import Eksi from '../../assets/eksi.svg'
+import Arti from '../../assets/arti.svg'
 
 type Product = {
     name: string,
@@ -56,6 +58,22 @@ const DetailPage = ({ route }) => {
 
                 <View>
                     <Text style={{ fontSize: 12, fontFamily: 'Poppins-Regular', color: '#838383', textAlign: 'center' }}>{product?.description}</Text>
+                </View>
+            </View>
+
+            <View style={{ height: 106, backgroundColor: '#FFFFFF', marginTop: 3, borderBottomStartRadius: 40, borderBottomEndRadius: 40, justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <View>
+                        <Text style={{ color: '#838383', fontSize: 12, fontFamily: 'Poppins-Medium' }}>Adet</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20 }}>
+                            <Eksi width={32} height={42}></Eksi>
+                            <Text style={{ color: '#000000', fontSize: 20, fontFamily: 'Poppins-Medium' }}>1</Text>
+                            <Arti></Arti>
+                        </View>
+                    </View>
+                    <Pressable style={{ height: 48, width: 233, backgroundColor: '#8B51FF', borderRadius: 12, paddingVertical: 4, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'Poppins-Medium' }}>Sepete Ekle</Text>
+                    </Pressable>
                 </View>
             </View>
         </View>

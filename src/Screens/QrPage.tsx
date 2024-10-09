@@ -37,7 +37,7 @@ export default function QrPage({ navigation }) {
 
                 if (product) {
                     const productId = product._id;
-                    navigation.navigate('DetailPage', { productId });
+                    navigation.navigate('Detail', { productId });
                 } else {
                     console.error('Bu barkod numarası ile ürün bulunamadı');
                 }
