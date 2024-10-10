@@ -53,7 +53,7 @@ function OnBoardStack() {
       <Stack.Screen name="OnBoard1">
         {() => (
           <OnboardingPage
-            imageUrl='logo1'
+            imageUrl='iphone12pro.png'
             desc="Hassasiyetlerinin olduğu ürünleri filtreleyip, sana en uygun ürün önerilerinde bulunuyoruz."
             title="Senin İçin"
             isSkip={true}
@@ -63,7 +63,7 @@ function OnBoardStack() {
       <Stack.Screen name="OnBoard2">
         {() => (
           <OnboardingPage
-            imageUrl='logo2'
+            imageUrl='iphone2.png'
             desc="Senin sağlığın bizim sağlığımız"
             title="Ne de olsa"
             isSkip={false}

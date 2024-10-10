@@ -23,14 +23,22 @@ type Props = {
     isSkip: boolean,
 }
 
+
+export const images = {
+    'iphone12pro.png': require('../../../assets/iphone12pro.png'),
+    'iphone2.png': require('../../../assets/iphone2.png'),
+  };
+  
+
 const OnboardingPage = ({ imageUrl, title, desc, isSkip }: Props) => {
 
     const { navigate } = useNavigation<NativeStackNavigationProp<StackParams>>()
 
+
     return (
         <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#FFFFFF' }}>
             <ImageBackground source={require('../../../assets/morarka.png')} style={styles.topBg}>
-                {React.createElement(logos[imageUrl], { style: styles.phoneImage })}
+                <Image source={images[imageUrl]} style={styles.phoneImage}></Image>
             </ImageBackground>
 
             <View style={styles.secondMainView}>
