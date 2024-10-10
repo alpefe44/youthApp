@@ -5,6 +5,7 @@ import { Double } from 'react-native/Libraries/Types/CodegenTypes';
 
 import Eksi from '../../assets/eksi.svg'
 import Arti from '../../assets/arti.svg'
+import BasketItem from '../Components/BasketItem';
 
 type Product = {
     name: string,
@@ -76,6 +77,8 @@ const DetailPage = ({ route }) => {
                     </Pressable>
                 </View>
             </View>
+
+            <BasketItem item={product}></BasketItem>
         </View>
     );
 };
