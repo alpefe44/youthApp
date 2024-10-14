@@ -20,6 +20,9 @@ import ChoiceIcon from '../../assets/choice.svg'
 import QrPage from '../Screens/QrPage';
 import DetailPage from '../Screens/DetailPage';
 import ProfileScreen from '../Screens/Profile';
+import Sepet from '../../assets/sepetn.svg'
+import SepetR from '../../assets/sepetr.svg'
+import BasketPage from '../Screens/BasketPage';
 
 
 export type StackParams = {
@@ -159,6 +162,20 @@ function TabMain() {
             />),
         headerShown: false, tabBarShowLabel: true, title: 'Hesabım'
       }} name='Profile' component={ProfileScreen}></Tab.Screen>
+
+      <Tab.Screen options={{
+        headerShadowVisible: false,
+        tabBarActiveTintColor: '#8B51FF',
+        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
+        tabBarIcon: ({ color, size, focused }) => (
+          focused ? <SepetR
+            style={{ width: size, height: size }}>
+          </SepetR> :
+            <Sepet
+              style={{ width: size, height: size }}
+            />),
+        headerShown: false, tabBarShowLabel: true, title: 'Sepet'
+      }} name='Sepet' component={BasketPage}></Tab.Screen>
     </Tab.Navigator>
   )
 }

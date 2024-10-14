@@ -6,6 +6,8 @@ import { Double } from 'react-native/Libraries/Types/CodegenTypes';
 import Eksi from '../../assets/eksi.svg'
 import Arti from '../../assets/arti.svg'
 import BasketItem from '../Components/BasketItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../Utils/CartSlice';
 
 type Product = {
     name: string,
@@ -31,6 +33,14 @@ const DetailPage = ({ route }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const [quantity, setQuantity] = useState(1);
+
+    const { items } = useSelector((state) => state.cart)
+
+    console.log(items)
+
+    const dispatch = useDispatch();
+
     const fetchProductDetails = async () => {
         const data = await getProductById(productId)
 
@@ -43,6 +53,16 @@ const DetailPage = ({ route }) => {
     useEffect(() => {
         fetchProductDetails();
     }, [productId]);
+
+    const increaseQuantity = () => {
+        setQuantity(prev => prev + 1);
+    };
+
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(prev => prev - 1);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -67,18 +87,18 @@ const DetailPage = ({ route }) => {
                     <View>
                         <Text style={{ color: '#838383', fontSize: 12, fontFamily: 'Poppins-Medium' }}>Adet</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20 }}>
-                            <Eksi width={32} height={42}></Eksi>
-                            <Text style={{ color: '#000000', fontSize: 20, fontFamily: 'Poppins-Medium' }}>1</Text>
-                            <Arti></Arti>
+                            <Eksi onPress={decreaseQuantity} width={32} height={42}></Eksi>
+                            <Text style={{ color: '#000000', fontSize: 20, fontFamily: 'Poppins-Medium' }}>{quantity}</Text>
+                            <Arti onPress={increaseQuantity}></Arti>
                         </View>
                     </View>
-                    <Pressable style={{ height: 48, width: 233, backgroundColor: '#8B51FF', borderRadius: 12, paddingVertical: 4, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }}>
+                    <Pressable onPress={() => dispatch(addItem({ ...product, quantity }))} style={{ height: 48, width: 233, backgroundColor: '#8B51FF', borderRadius: 12, paddingVertical: 4, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'Poppins-Medium' }}>Sepete Ekle</Text>
                     </Pressable>
                 </View>
             </View>
 
-            <BasketItem item={product}></BasketItem>
+            {/* <BasketItem item={product}></BasketItem> */}
         </View>
     );
 };
