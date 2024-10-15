@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import BasketItem from '../Components/BasketItem';
 
-// create a component
 const BasketPage = () => {
 
     const { items, totalQuantity, totalPrice } = useSelector((state) => state.cart)
@@ -17,7 +16,6 @@ const BasketPage = () => {
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -26,5 +24,4 @@ const styles = StyleSheet.create({
     },
 });
 
-//make this component available to the app
 export default BasketPage;

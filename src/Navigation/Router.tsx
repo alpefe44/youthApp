@@ -154,6 +154,20 @@ function TabMain() {
         tabBarActiveTintColor: '#8B51FF',
         tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
         tabBarIcon: ({ color, size, focused }) => (
+          focused ? <SepetR
+            style={{ width: size, height: size }}>
+          </SepetR> :
+            <Sepet
+              style={{ width: size, height: size }}
+            />),
+        headerShown: false, tabBarShowLabel: true, title: 'Sepet'
+      }} name='Sepet' component={BasketPage}></Tab.Screen>
+      
+      <Tab.Screen options={{
+        headerShadowVisible: false,
+        tabBarActiveTintColor: '#8B51FF',
+        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
+        tabBarIcon: ({ color, size, focused }) => (
           focused ? <UserP
             style={{ width: size, height: size }}>
           </UserP> :
@@ -163,19 +177,7 @@ function TabMain() {
         headerShown: false, tabBarShowLabel: true, title: 'Hesabım'
       }} name='Profile' component={ProfileScreen}></Tab.Screen>
 
-      <Tab.Screen options={{
-        headerShadowVisible: false,
-        tabBarActiveTintColor: '#8B51FF',
-        tabBarLabelStyle: { fontFamily: 'Poppins-Medium', fontSize: 12 },
-        tabBarIcon: ({ color, size, focused }) => (
-          focused ? <SepetR
-            style={{ width: size, height: size }}>
-          </SepetR> :
-            <Sepet
-              style={{ width: size, height: size }}
-            />),
-        headerShown: false, tabBarShowLabel: true, title: 'Sepet'
-      }} name='Sepet' component={BasketPage}></Tab.Screen>
+
     </Tab.Navigator>
   )
 }

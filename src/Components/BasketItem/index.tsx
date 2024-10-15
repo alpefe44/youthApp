@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import Eksi from '../../../assets/basketeksi.svg'
 import Arti from '../../../assets/basketarti.svg'
 import { useDispatch } from 'react-redux';
+import { addItem, decreaseQuantity, increaseQuantity, removeItem } from '../../Utils/CartSlice';
 
 type Props = {
     item: any
@@ -28,9 +29,9 @@ const BasketItem = ({ item }: Props) => {
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, justifyContent: 'flex-end', alignSelf: 'flex-end', paddingBottom: 12 }}>
-                <Eksi></Eksi>
-                <Text>1</Text>
-                <Arti></Arti>
+                <Eksi onPress={() => dispatch(decreaseQuantity(item._id))}></Eksi>
+                <Text>{item.quantity}</Text>
+                <Arti onPress={() => dispatch(increaseQuantity(item._id))}></Arti>
             </View>
         </View>
     );
